@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" style="display: table; margin: auto;">
+<head>
+  <meta charset="UTF-8">
+  <title>Task 1.1</title>
+</head>
+<body style="display: table-cell; vertical-align: middle;">
+<label for="txtOut"></label>
+<div style="padding: 10px; margin-top: 50px; min-width: 12px; border: darkblue thin solid; background-color: antiquewhite">
+  <h1 id="txtOut" style="white-space:nowrap;"></h1>
+</div>
+<script type="module">
+  "use strict";
+  import {init} from "./task_1-1.mjs";
+  init(document.getElementById("txtOut"));
+  const domTextOut = document.getElementById("txtOut");
+</script>
+</body>
+</html>
