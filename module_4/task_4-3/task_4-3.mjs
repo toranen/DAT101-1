@@ -1,24 +1,33 @@
 "use strict"
 import { printOut, newLine } from "../../common/script/utils.mjs";
 
-
 /*
 * This function is run automatic with the HTML page
 * Simply place your JavaScript code inside the this function.
 */
 export function main(){
 
-	printOut("--- Part 1, 2, 3 ----------------------------------------------------------------------------------------");
+	printOut("--- Part 1 ----------------------------------------------------------------------------------------------");
 	/* Put your code below here!*/
-	printOut("Task 1, 2 and 3");
-	let wakeUpTime = 2;
-	if ("Replace this") {
-		printOut("I can take the bus to school.");
-	}
-	printOut(newLine);
+  printOut("Replace this with you answer!");
+  printOut(newLine);
 
+	printOut("--- Part 2 ----------------------------------------------------------------------------------------------");
+	/* Put your code below here!*/
+  printOut("Replace this with you answer!");
+  printOut(newLine);
 
-	printOut("--- Part 4, 5 --------------------------------------------------------------------------------------------");
+	printOut("--- Part 3 ----------------------------------------------------------------------------------------------");
+	/* Put your code below here!*/
+  printOut("Replace this with you answer!");
+  printOut(newLine);
+
+	printOut("--- Part 4 ----------------------------------------------------------------------------------------------");
+	/* Put your code below here!*/
+  printOut("Replace this with you answer!");
+  printOut(newLine);
+
+	printOut("--- Part 5 ----------------------------------------------------------------------------------------------");
 	/* Put your code below here!*/
   printOut("Replace this with you answer!");
   printOut(newLine);
