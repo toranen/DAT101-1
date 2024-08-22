@@ -2,6 +2,7 @@
 
 let DOMTextOut = null;
 export const newLine = "<br/>";
+export const NEWLine = newLine;
 
 export function initPrintOut(aDomElement) {
   DOMTextOut = aDomElement;
