@@ -11,7 +11,7 @@ export function initPrintOut(aDomElement) {
 export function printOut(aText) {
   try{
     if(typeof aText !== "string") aText = aText.toString();
-    aText = aText.replace(newLine, "");
+    //aText = aText.replace(newLine, "");
     if (DOMTextOut.innerHTML.length !== 0) {
       DOMTextOut.innerHTML += newLine;
     }
