@@ -136,3 +136,19 @@ function testIfMathIsFun() {
 }
 
 testIfMathIsFun();
+
+
+printOut(" ");
+/*
+  Use recursion to count from 1 to 10 and then back to 1 again. 
+*/
+const countTo = 10;
+function count(aNumber) {
+  if (aNumber <= countTo) {
+    printOut(aNumber.toString());
+    count(aNumber + 1);
+    printOut(aNumber.toString());
+  }
+}
+
+count(1);
