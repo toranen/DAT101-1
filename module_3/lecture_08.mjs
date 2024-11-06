@@ -88,6 +88,8 @@ if (Number.isNaN(netPrice1)) {
   printOut("netPrice2 = " + netPrice2.toFixed(2));
 }
 
+printOut("");
+
 /*
 From mathematics, we have the following expression:
 1 + 2 = 3
@@ -119,10 +121,18 @@ function testIfMathIsFun() {
 
     if (sumLeft !== sumRight) {
       ok = false;
+      printOut("Error in line " + line.toString());
     }else{
       ok = true;
     }
     line++;
+
+    if(line > 200){
+      printOut("Math is Fun!");
+      break;
+    }
     
   } while (ok);
 }
+
+testIfMathIsFun();
