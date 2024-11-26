@@ -26,10 +26,13 @@ class TAccount {
   #type;
   #balance;
   #withdrawCount;
+  #currencyType;
+
   constructor(aType) {
     this.#type = aType;
     this.#balance = 0;
     this.#withdrawCount = 0;
+    this.#currencyType = CurrencyTypes.NOK;
   }
 
   toString() {
@@ -48,15 +51,20 @@ class TAccount {
     return this.#balance;
   }
 
-  deposit(aAmount) {
-    this.#balance += aAmount;
+  deposit(aAmount, aType = CurrencyTypes.NOK) {
+    const newAmount = aAmount / this.#currencyConvert(aType);
+    this.#balance += newAmount;
     this.#withdrawCount = 0;
-    printOut("Deposit of " + aAmount + ", new balance is " + this.#balance);
+    let text = "Deposit of " + aAmount + " " + aType.name;
+    text += ", new balance is ";
+    text += this.#balance.toFixed(2) + this.#currencyType.denomination;
+    printOut(text);
   }
 
-  withdraw(aAmount) {
+  withdraw(aAmount, aType = CurrencyTypes.NOK) {
     let canWithdraw = true;
     let text = "";
+    const newAmount = aAmount / this.#currencyConvert(aType);
     switch (this.#type) {
       case AccountType.Savings:
         if (this.#withdrawCount < 3) {
@@ -74,13 +82,31 @@ class TAccount {
     }
 
     if (canWithdraw) {
-      this.#balance -= aAmount;
-      printOut("Withdraw of " + aAmount + ", new balance is " + this.#balance);
-    } else {
-      printOut(text);
+      this.#balance -= newAmount;
+      text = "Withdraw of " + aAmount + " " + aType.name + ", new balance is ";
+      text += this.#balance.toFixed(2) + this.#currencyType.denomination;
     }
+    printOut(text);
+  }// End of function withdraw
+
+  setCurrencyType(aNewCurrencyType) {
+    if(this.#currencyType === aNewCurrencyType){
+      return;
+    }
+    this.#balance = this.#balance * this.#currencyConvert(aNewCurrencyType);
+    let text = "The account currency has been changed from ";
+    text += this.#currencyType.name + " to " + aNewCurrencyType.name;
+    text += newLine + "New balance is ";
+    text += this.#balance.toFixed(2) + aNewCurrencyType.denomination;
+    this.#currencyType = aNewCurrencyType;
+    printOut(text);
   }
-}
+
+  #currencyConvert(aType){
+    return CurrencyTypes.NOK.value / this.#currencyType.value * aType.value;
+  }
+
+}// End of class TAccount
 printOut("--- Part 1 ----------------------------------------------------------------------------------------------");
 /* Put your code below here!*/
 printOut(AccountType.Normal + ", " + AccountType.Savings + ", " + AccountType.Credit + ", " + AccountType.Pension);
@@ -117,15 +143,21 @@ printOut(newLine);
 
 printOut("--- Part 5 ----------------------------------------------------------------------------------------------");
 /* Put your code below here!*/
-printOut("Replace this with you answer!");
+myAccount.deposit(150);
 printOut(newLine);
 
 printOut("--- Part 6 ----------------------------------------------------------------------------------------------");
 /* Put your code below here!*/
-printOut("Replace this with you answer!");
+myAccount.setCurrencyType(CurrencyTypes.SEK);
+myAccount.setCurrencyType(CurrencyTypes.USD);
+myAccount.setCurrencyType(CurrencyTypes.NOK);
 printOut(newLine);
 
 printOut("--- Part 7 ----------------------------------------------------------------------------------------------");
 /* Put your code below here!*/
-printOut("Replace this with you answer!");
+myAccount.deposit(12, CurrencyTypes.USD);
+myAccount.withdraw(10, CurrencyTypes.GBP);
+myAccount.setCurrencyType(CurrencyTypes.CAD);
+myAccount.setCurrencyType(CurrencyTypes.INR);
+myAccount.withdraw(100.927, CurrencyTypes.SEK);
 printOut(newLine);
