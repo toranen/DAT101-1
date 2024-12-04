@@ -264,6 +264,36 @@ printOut(newLine);
 
 /* Task 10*/
 printOut("--- Part 10 ---------------------------------------------------------------------------------------------");
-/* Put your code below here!*/
-printOut("Replace this with you answer!");
+/*
+Create an array that contains rows and columns (2 dimensions, 5x9).
+Start with an empty array. Use "for" loops to create rows and columns, respectively.
+In each "cell," create a text that shows which row and column the "cell" is in.
+Then create two new sets of "for" loops to print the array itself.
+ * Hint:  For each round in the outer loop for the rows,
+          you create a column. And for each round in the columns, you write the "cell" value.
+*/
+
+const myTable = [];
+for(let row = 0; row < 5; row++){
+  //Hva gjør vi nå?
+  const columns = [];
+  for(let column = 0; column < 9; column++){
+    const cell = + row + "," + column;
+    columns.push(cell);
+  }
+  myTable.push(columns);
+}
+
+text = ""; //Klargjør teksten som skal skrives ut (tømmer den)
+for(let row = 0; row < myTable.length; row++){
+  //Hva gjør vi nå? Vi må hente ut radene
+  const columns = myTable[row];
+  //Traverserer kolonnene
+  for(let column = 0; column < columns.length; column++){
+    const cell = columns[column]; //Hjelpevariabel for å hente ut cellen
+    text += "[" + cell + "]"; //Legger til cellen i teksten
+  }
+  printOut(text);//Skriver ut teksten
+  text = ""; //Tømmer teksten
+}
 printOut(newLine);
