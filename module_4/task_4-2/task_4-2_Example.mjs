@@ -151,31 +151,115 @@ printOut("ValueKeys: " + valueKeys.join(", ")); // Her printer vi ut verdien til
 
 //Vi går igjennom alle nøklene til objektet EWeekDays
 for(let index = 0; index < keys.length; index++){
+  let text = "";
   //Vi henter ut navnet på nøkkelen (f.eks. WeekDay1)
   const key = keys[index];
-  printOut(key);
+  text = key + ": ";
   //TODO: Skriv ut alle nøklene og verdiene til nøklene
-  
-  for(let i = 0; i < keys.length; i++){
-    
+  const keyObject = EWeekDays[key]; //Henter vi objektet til nøkkelen (f.eks. WeekDay1)
+  const keyObjectKeys = Object.keys(keyObject); //Her henter vi alle nøklene til for eksempel WeekDay1
+  for(let i = 0; i < keyObjectKeys.length; i++){
+    const keyObjectKey = keyObjectKeys[i]; //Her henter vi ut nøkkelen (f.eks. value)
+    const keyObjectValue = keyObject[keyObjectKey]; //Her henter vi ut verdien til nøkkelen (f.eks. 0x01)
+    text += " " + keyObjectKey + ": " + keyObjectValue;
   }
-  //Vi henter ut alle verdiene til nøkkelen (f.eks. 0x01, Mandag)
-  valueKeys = Object.values(EWeekDays[keys[index]]);
-  //Vi printer ut nøkkelen og verdiene til nøkkelen
-  printOut(key + " = " + valueKeys.join(", "));
+  printOut(text);
 }
 printOut(newLine);
 
 
 
 printOut("--- Part 8 ----------------------------------------------------------------------------------------------");
-/* Put your code below here!*/
-printOut("Replace this with you answer!");
+/*
+Create an array that contains 35 random numbers from 1 to 20 (inclusive).
+Sort these arrays in ascending and descending order.
+To get full credit for this task, it must be solved with "callback" functions
+that you use in the .sort(...) method of this array.
+*/
+const randomValues = [];
+for(let i = 0; i < 35; i++){
+  const randomValue = Math.ceil(Math.random() * 20); //Math.floor(Math.random() * 20) + 1;
+  randomValues.push(randomValue);
+}
+printOut("Random values: " + randomValues.join(", "));
+//TODO: Sorter tabellen i stigende rekkefølge, og bruk en callback-funksjon
+//1. Hva er en callback-funksjon?
+//2. Hvordan sorterer du en tabell
+//3. Hvordan velge rekkefølgen på sorteringen
+
+randomValues.sort(sortRandomValues);
+printOut("Tabellen i stigende rekkefølge: " + randomValues.join(", "));
+randomValues.reverse(); //Flipper rekkefølgen på tabellen, ingen sortering. Må sorteres først.
+printOut("Tabellen i synkende rekkefølge: " + randomValues.join(", "));
+
+function sortRandomValues(aValue1, aValue2){
+  return aValue1 - aValue2;
+}
+
+/*
+Pilfunksjoner: ((argumenter)=>{body})
+Ikke navngitte funksjoner: function(argumenter){body}
+vanlige navngitte funksjoner: function navn(argumenter){body}
+*/
+
+
 printOut(newLine);
 
 printOut("--- Part 9 ----------------------------------------------------------------------------------------------");
-/* Put your code below here!*/
-printOut("Replace this with you answer!");
+/*
+Based on part 8, print out how many times the different numbers occur in the array.
+First, print the numbers and their frequency,
+then print the frequencies and which numbers they correspond to.
+You must print the most frequent ones first,
+and if there are multiple numbers where the frequency is the same,
+then it should again be sorted from the smallest to the largest number.
+*/
+
+const freq = {};
+for(let i = 0; i < randomValues.length; i++){
+  const value = randomValues[i];
+  // Hva skjer hvis freq[value] ikke er definert?
+  if(freq[value]){// Husk at undefined er false
+    freq[value]++;
+  }else{
+    freq[value] = 1;
+  }
+}
+//Her er alle tallene og frekvensen til tallene i objektet freq
+//Sorter denne listen slik at de mest frekvente tallene kommer først
+let freqKeys = Object.keys(freq);
+freqKeys.sort(sortFreq);//Sorterer listen med callback-funksjonen sortFreq
+
+function sortFreq(aValue1, aValue2){
+  //Her sorter vi listen basert på frekvensen til tallene
+  const freq1 = freq[aValue1];
+  const freq2 = freq[aValue2];
+  return freq2 - freq1;
+}
+
+text = ""; //Klargjør teksten som skal skrives ut (tømmer den)
+for(let i = 0; i < freqKeys.length; i++){
+  const freqKey = freqKeys[i]; //Hjelpevariabel for å hente ut nøkkelen
+  const freqValue = freq[freqKey];//Hjelpevariabel for å hente ut verdien
+  text += freqKey + ": " + freqValue + ", ";//Legger til tall og frekvens i teksten
+}
+printOut(text);//Skriver ut teksten
+
+/*
+Eksempel på tomme objekter, og definere nøkler i objektet, samt å sette verdier til nøklene
+const testObject = {};
+console.log(testObject);
+const rand = Math.ceil(Math.random() * 20);
+testObject[rand] = 0;
+console.log(testObject);
+testObject[rand]++;
+console.log(testObject);
+testObject[rand]++;
+console.log(testObject);
+testObject[rand]++;
+console.log(testObject);
+*/
+
 printOut(newLine);
 
 /* Task 10*/
