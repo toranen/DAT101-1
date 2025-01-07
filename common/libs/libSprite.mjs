@@ -33,6 +33,10 @@ class TSpriteCanvas {
     const dh = sh;
     this.#ctx.drawImage(this.#img, sx, sy, sw, sh, dx, dy, dw, dh);
   }
+
+  clearCanvas(){
+    this.#ctx.clearRect(0, 0, this.#cvs.width, this.#cvs.height);
+  }
 }
 
 export default {
