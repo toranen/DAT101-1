@@ -20,10 +20,13 @@ const spriteCanvas = new libSprite.TSpriteCanvas(cvs);
 spriteCanvas.loadSpriteSheet("./Media/sonic_sprite_sheet.png", onLoaded);
 //--------------- Functions ----------------------------------------------//
 
+function animateSprite(){
+  
+}
 //--------------- Event Handlers -----------------------------------------//
 function onLoaded(){
   console.log("Sprite sheet loaded.");
-  spriteCanvas.drawSprite(SpriteInfoList.sonic1);
+  spriteCanvas.drawSprite(SpriteInfoList.sonic1, 100, 100, 4);
 }
 //--------------- Main Code ----------------------------------------------//
 
