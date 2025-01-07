@@ -1,3 +1,8 @@
 {
-  "liveServer.settings.port": 5501
+  "liveServer.settings.port": 5501,
+  "editor.tabSize": 2,
+  "typescript.validate.enable": false,
+  "cSpell.words": [
+    "importmap"
+  ],
 }
