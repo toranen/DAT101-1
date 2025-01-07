@@ -14,19 +14,25 @@ const SpriteInfoList = {
   sonic8: { x: 0, y: 825, width: 102, height: 125, count: 2},
   sonic9: { x: 0, y: 950, width: 102, height: 125, count: 4}
 }
-
+let spIndex = 0;
 const cvs = document.getElementById("cvs");
 const spriteCanvas = new libSprite.TSpriteCanvas(cvs);
 spriteCanvas.loadSpriteSheet("./Media/sonic_sprite_sheet.png", onLoaded);
 //--------------- Functions ----------------------------------------------//
 
+
 function animateSprite(){
-  
+  spriteCanvas.clearCanvas();
+  spriteCanvas.drawSprite(SpriteInfoList.sonic1, 100, 100, spIndex);
+  spIndex++;
+  if(spIndex >= SpriteInfoList.sonic1.count){
+    spIndex = 0;
+  }
 }
 //--------------- Event Handlers -----------------------------------------//
 function onLoaded(){
   console.log("Sprite sheet loaded.");
-  spriteCanvas.drawSprite(SpriteInfoList.sonic1, 100, 100, 4);
+  setInterval(animateSprite, 100);
 }
 //--------------- Main Code ----------------------------------------------//
 
