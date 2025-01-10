@@ -1,4 +1,5 @@
 "use strict";
+import lib2d from "../../common/libs/lib2d.mjs";
 import libSound from "../../common/libs/libSound.mjs";
 import libSprite from "../../common/libs/libSprite.mjs";
 
@@ -30,7 +31,9 @@ export const SpriteInfoList = {
 export const GameProps = {
   soundMuted: false,
   dayTime: true,
-  background: null 
+  speed: 1,
+  background: null,
+  ground: null,
 };
 
 //--------------- Functions ----------------------------------------------//
@@ -45,7 +48,28 @@ function playSound(aSound) {
 
 function loadGame(){
   console.log("Game ready to load");
-  //GameProps.background = new libSprite.TSprite(spcvs, SpriteInfoList.background);
+  cvs.width = SpriteInfoList.background.width;
+  cvs.height = SpriteInfoList.background.height;
+
+  let pos = new lib2d.TPosition(0, 0);
+  GameProps.background = new libSprite.TSprite(spcvs, SpriteInfoList.background, pos);
+  pos.y = cvs.height - SpriteInfoList.ground.height;
+  GameProps.ground = new libSprite.TSprite(spcvs, SpriteInfoList.ground, pos);
+  
+  requestAnimationFrame(drawGame);
+  setInterval(animateGame, 10);
+}
+
+function drawGame(){
+  spcvs.clearCanvas();
+  GameProps.background.draw();
+  GameProps.ground.draw();
+  requestAnimationFrame(drawGame);
+}
+
+function animateGame(){
+  GameProps.ground.translate(-GameProps.speed, 0);
+  
 }
 
 //--------------- Event Handlers -----------------------------------------//
