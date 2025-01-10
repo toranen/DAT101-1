@@ -53,9 +53,13 @@ class TSprite {
     this.#spi = aSpriteInfo;
     this.#pos = aPosition.clone(); //Vi trenger en kopi av posisjonen
     this.#index = 0;
+    this.animateSpeed = 0;
   }
 
   draw() {
+    if(this.animateSpeed > 0){
+      this.#index += 1000 / this.animateSpeed;
+    }
     this.#spcvs.drawSprite(this.#spi, this.#pos.x, this.#pos.y, this.#index);
   }
 
@@ -79,7 +83,7 @@ class TSprite {
   set posY(aY) {
     this.#pos.y = aY;
   }
-  
+
   setPos(aX, aY) {
     this.#pos.x = aX;
     this.#pos.y = aY;
