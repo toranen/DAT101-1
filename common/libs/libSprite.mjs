@@ -23,7 +23,7 @@ class TSpriteCanvas {
 
   drawSprite(aSpriteInfo, aDx = 0, aDy = 0, aIndex = 0) {
     let index = aIndex;
-    const sx = aSpriteInfo.x + (index * aSpriteInfo.width);
+    const sx = aSpriteInfo.x + index * aSpriteInfo.width;
     const sy = aSpriteInfo.y;
     const sw = aSpriteInfo.width;
     const sh = aSpriteInfo.height;
@@ -34,7 +34,7 @@ class TSpriteCanvas {
     this.#ctx.drawImage(this.#img, sx, sy, sw, sh, dx, dy, dw, dh);
   }
 
-  clearCanvas(){
+  clearCanvas() {
     this.#ctx.clearRect(0, 0, this.#cvs.width, this.#cvs.height);
   }
 } // End of TSpriteCanvas class
@@ -55,29 +55,36 @@ class TSprite {
     this.#index = 0;
   }
 
-  draw(){
-    this.#spcvs.drawSprite(this.#spi,this.#pos.x, this.#pos.y, this.#index);
+  draw() {
+    this.#spcvs.drawSprite(this.#spi, this.#pos.x, this.#pos.y, this.#index);
   }
 
-  translate(aDx, aDy){
+  translate(aDx, aDy) {
     this.#pos.x += aDx;
     this.#pos.y += aDy;
   }
 
-  get posX(){
+  get posX() {
     return this.#pos.x;
   }
 
-  get posY(){
+  get posY() {
     return this.#pos.y;
   }
 
-   setPos(aX, aY){
+  set posX(aX) {
+    this.#pos.x = aX;
+  }
+
+  set posY(aY) {
+    this.#pos.y = aY;
+  }
+  
+  setPos(aX, aY) {
     this.#pos.x = aX;
     this.#pos.y = aY;
   }
 } //End of TSprite class
-
 
 export default {
   /**
@@ -98,5 +105,5 @@ export default {
    * @param {TPosition} aPosition - The position of the sprite.
    * @function draw - Draws the sprite on the canvas.
    */
-  TSprite: TSprite
+  TSprite: TSprite,
 };
