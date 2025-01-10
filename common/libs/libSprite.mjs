@@ -23,7 +23,7 @@ class TSpriteCanvas {
 
   drawSprite(aSpriteInfo, aDx = 0, aDy = 0, aIndex = 0) {
     let index = aIndex;
-    const sx = aSpriteInfo.x + index * aSpriteInfo.width;
+    const sx = aSpriteInfo.x + (index * aSpriteInfo.width);
     const sy = aSpriteInfo.y;
     const sw = aSpriteInfo.width;
     const sh = aSpriteInfo.height;
@@ -58,7 +58,7 @@ class TSprite {
 
   draw() {
     if(this.animateSpeed > 0){
-      this.#index += 1000 / this.animateSpeed;
+      this.#index += this.animateSpeed;
     }
     this.#spcvs.drawSprite(this.#spi, this.#pos.x, this.#pos.y, this.#index);
   }
