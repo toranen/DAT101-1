@@ -37,7 +37,28 @@ class TSpriteCanvas {
   clearCanvas(){
     this.#ctx.clearRect(0, 0, this.#cvs.width, this.#cvs.height);
   }
-}
+} // End of TSpriteCanvas class
+
+/* 
+ Lag en klasse TSprite med en konstruktør som tar inn et TSpriteCanvas-objekt og et spriteInfo-objekt.
+*/
+
+class TSprite {
+  // spcvs, spi
+  #spcvs;
+  #spi;
+  constructor(aSpriteCanvas, aSpriteInfo){
+    this.#spcvs = aSpriteCanvas;
+    this.#spi = aSpriteInfo;
+  }
+
+  draw(){
+    this.#spcvs.drawSprite(this.#spi)
+  }
+
+
+} //End of TSprite class
+
 
 export default {
   /**
