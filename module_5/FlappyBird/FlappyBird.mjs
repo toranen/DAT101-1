@@ -1,9 +1,13 @@
 "use strict";
 import libSound from "../../common/libs/libSound.mjs";
+import libSprite from "../../common/libs/libSprite.mjs";
+
 
 //--------------- Objects and Variables ----------------------------------//
 const chkMuteSound = document.getElementById("chkMuteSound");
 const rbDayNight = document.getElementsByName("rbDayNight");
+const cvs = document.getElementById("cvs");
+const spcvs = new libSprite.TSpriteCanvas(cvs);
 
 // prettier-ignore
 export const SpriteInfoList = {
@@ -26,6 +30,7 @@ export const SpriteInfoList = {
 export const GameProps = {
   soundMuted: false,
   dayTime: true,
+  background: null 
 };
 
 //--------------- Functions ----------------------------------------------//
@@ -36,6 +41,11 @@ function playSound(aSound) {
   } else {
     aSound.pause();
   }
+}
+
+function loadGame(){
+  console.log("Game ready to load");
+  //GameProps.background = new libSprite.TSprite(spcvs, SpriteInfoList.background);
 }
 
 //--------------- Event Handlers -----------------------------------------//
@@ -64,3 +74,6 @@ function setDayNight() {
 chkMuteSound.addEventListener("change", setSoundOnOff);
 rbDayNight[0].addEventListener("change", setDayNight);
 rbDayNight[1].addEventListener("change", setDayNight);
+
+// Load the sprite sheet
+spcvs.loadSpriteSheet("./Media/FlappyBirdSprites.png", loadGame)
