@@ -59,7 +59,7 @@ function loadGame(){
   pos.x = 100;
   pos.y = 100;
   GameProps.hero = new libSprite.TSprite(spcvs, SpriteInfoList.hero1, pos);
-  GameProps.hero.animateSpeed = 1;
+  GameProps.hero.animateSpeed = 10;
   requestAnimationFrame(drawGame);
   setInterval(animateGame, 10);
 }

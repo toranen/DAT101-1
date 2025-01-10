@@ -23,7 +23,7 @@ class TSpriteCanvas {
 
   drawSprite(aSpriteInfo, aDx = 0, aDy = 0, aIndex = 0) {
     let index = aIndex;
-    const sx = aSpriteInfo.x + (index * aSpriteInfo.width);
+    const sx = aSpriteInfo.x + index * aSpriteInfo.width;
     const sy = aSpriteInfo.y;
     const sw = aSpriteInfo.width;
     const sh = aSpriteInfo.height;
@@ -48,17 +48,26 @@ class TSprite {
   #spi;
   #pos;
   #index;
+  #speedIndex;
   constructor(aSpriteCanvas, aSpriteInfo, aPosition) {
     this.#spcvs = aSpriteCanvas;
     this.#spi = aSpriteInfo;
     this.#pos = aPosition.clone(); //Vi trenger en kopi av posisjonen
     this.#index = 0;
     this.animateSpeed = 0;
+    this.#speedIndex = 0;
   }
 
   draw() {
-    if(this.animateSpeed > 0){
-      this.#index += this.animateSpeed;
+    if (this.animateSpeed > 0) {
+      this.#speedIndex += this.animateSpeed / 100;
+      if (this.#speedIndex >= 1) {
+        this.#index++;
+        this.#speedIndex = 0;
+        if (this.#index >= this.#spi.count) {
+          this.#index = 0;
+        }
+      }
     }
     this.#spcvs.drawSprite(this.#spi, this.#pos.x, this.#pos.y, this.#index);
   }
