@@ -11,16 +11,8 @@ class TPoint {
     this.x = aX;
     this.y = aY;
   }
-}
+} // End of TPoint class
 
-/*
-Lag en klasse TPosition som arver fra TPoint (extend)
-og som har en konstruktør som tar inn x- og y-koordinater.
-Og roper på super med disse koordinatene.
-En duplikat funksjon "clone" som returnerer en ny instans av TPosition
-med samme x- og y-koordinater.
-En funksjon for å finne avstanden mellom to TPoint objekter.
-*/
 class TPosition extends TPoint{
   constructor(aX, aY){
     super(aX, aY);

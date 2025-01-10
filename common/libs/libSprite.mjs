@@ -1,5 +1,5 @@
 "use strict";
-
+import lib2D from "./lib2d.mjs";
 /**
  * @library libSprite
  * @description A library for classes that manage sprite animations.
@@ -40,11 +40,10 @@ class TSpriteCanvas {
 } // End of TSpriteCanvas class
 
 /* 
- Lag en klasse TSprite med en konstruktør som tar inn et TSpriteCanvas-objekt og et spriteInfo-objekt.
+ Utvid konstruktøren til å ta inn et punkt for destinasjon til sprite.
 */
 
 class TSprite {
-  // spcvs, spi
   #spcvs;
   #spi;
   constructor(aSpriteCanvas, aSpriteInfo){
