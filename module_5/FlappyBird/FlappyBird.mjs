@@ -70,7 +70,7 @@ function drawGame(){
 function animateGame(){
   GameProps.ground.translate(-GameProps.speed, 0);
   if(GameProps.ground.posX <= -SpriteInfoList.background.width){
-    GameProps.ground.setPos(0, cvs.height - SpriteInfoList.ground.height);
+    GameProps.ground.posX = 0;
   }
 
 }
