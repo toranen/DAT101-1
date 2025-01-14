@@ -35,7 +35,8 @@ export const GameProps = {
   speed: 1,
   background: null,
   ground: null,
-  hero: null
+  hero: null,
+  obstacles: [],
 };
 
 //--------------- Functions ----------------------------------------------//
@@ -60,6 +61,12 @@ function loadGame(){
   pos.x = 100;
   pos.y = 100;
   GameProps.hero = new THero(spcvs, SpriteInfoList.hero1, pos);
+
+  pos.x = 300;
+  pos.y = 50;
+  const obstacle = new libSprite.TSprite(spcvs, SpriteInfoList.obstacle, pos);
+  obstacle.index = 2;
+  GameProps.obstacles.push(obstacle);
   requestAnimationFrame(drawGame);
   setInterval(animateGame, 10);
 }
@@ -69,7 +76,15 @@ function drawGame(){
   GameProps.background.draw();
   GameProps.ground.draw();
   GameProps.hero.draw();
+  drawObstacles();
   requestAnimationFrame(drawGame);
+}
+
+function drawObstacles(){
+  for(let i = 0; i < GameProps.obstacles.length; i++){
+    const obstacle = GameProps.obstacles[i];
+    obstacle.draw();
+  }
 }
 
 function animateGame(){
