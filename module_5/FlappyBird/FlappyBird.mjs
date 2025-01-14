@@ -3,6 +3,7 @@ import lib2d from "../../common/libs/lib2d.mjs";
 import libSound from "../../common/libs/libSound.mjs";
 import libSprite from "../../common/libs/libSprite.mjs";
 import THero from "./hero.mjs";
+import TObstacle from "./obstacle.mjs";
 
 
 //--------------- Objects and Variables ----------------------------------//
@@ -62,9 +63,7 @@ function loadGame(){
   pos.y = 100;
   GameProps.hero = new THero(spcvs, SpriteInfoList.hero1, pos);
 
-  pos.x = 300;
-  pos.y = 50;
-  const obstacle = new libSprite.TSprite(spcvs, SpriteInfoList.obstacle, pos);
+  const obstacle = new TObstacle(spcvs, SpriteInfoList.obstacle);
   obstacle.index = 2;
   GameProps.obstacles.push(obstacle);
   requestAnimationFrame(drawGame);
@@ -74,9 +73,9 @@ function loadGame(){
 function drawGame(){
   spcvs.clearCanvas();
   GameProps.background.draw();
+  drawObstacles();
   GameProps.ground.draw();
   GameProps.hero.draw();
-  drawObstacles();
   requestAnimationFrame(drawGame);
 }
 
@@ -93,6 +92,10 @@ function animateGame(){
     GameProps.ground.posX = 0;
   }
   GameProps.hero.update();
+  for(let i = 0; i < GameProps.obstacles.length; i++){
+    const obstacle = GameProps.obstacles[i];
+    obstacle.update();
+  }
 }
 
 //--------------- Event Handlers -----------------------------------------//
