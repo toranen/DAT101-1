@@ -107,7 +107,10 @@ function animateGame(){
 function spawnObstacle(){
   const obstacle = new TObstacle(spcvs, SpriteInfoList.obstacle);
   GameProps.obstacles.push(obstacle);
-  setTimeout(spawnObstacle, 2000);
+  //Spawn a new obstacle in 2-7 seconds
+  const seconds = Math.ceil(Math.random() * 5) + 2;
+  setTimeout(spawnObstacle, seconds * 1000);
+  console.log("Obstacle spawned in " + seconds + " seconds");
 }
 
 //--------------- Event Handlers -----------------------------------------//
