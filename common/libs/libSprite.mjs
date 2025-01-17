@@ -21,7 +21,7 @@ class TSpriteCanvas {
     this.#img.src = aFileName;
   }
 
-  drawSprite(aSpriteInfo, aDx = 0, aDy = 0, aIndex = 0) {
+  drawSprite(aSpriteInfo, aDx = 0, aDy = 0, aIndex = 0, aRot = 0) {
     let index = aIndex;
     const sx = aSpriteInfo.x + index * aSpriteInfo.width;
     const sy = aSpriteInfo.y;
@@ -31,7 +31,19 @@ class TSpriteCanvas {
     const dy = aDy;
     const dw = sw;
     const dh = sh;
-    this.#ctx.drawImage(this.#img, sx, sy, sw, sh, dx, dy, dw, dh);
+    if(aRot !== 0){
+      //Hvis vi har rotasjon må vi flytte mitten av destinasjonen til 0,0
+      const cx = dx + dw / 2;
+      const cy = dy + dh / 2;
+      const rad = aRot * Math.PI / 180;
+      this.#ctx.translate(cx, cy);
+      this.#ctx.rotate(rad);
+      this.#ctx.drawImage(this.#img, sx, sy, sw, sh, -dw / 2, -dh / 2, dw, dh);
+      this.#ctx.rotate(-rad);
+      this.#ctx.translate(-cx, -cy);
+    }else{
+      this.#ctx.drawImage(this.#img, sx, sy, sw, sh, dx, dy, dw, dh);
+    }
   }
 
   clearCanvas() {
@@ -57,6 +69,7 @@ class TSprite {
     this.animateSpeed = 0;
     this.#speedIndex = 0;
     this.boundingBox = new lib2D.TRectangle(this.#pos.x, this.#pos.y, this.#spi.width, this.#spi.height);
+    this.rotation = 0;
   }
 
   draw() {
@@ -70,7 +83,7 @@ class TSprite {
         }
       }
     }
-    this.#spcvs.drawSprite(this.#spi, this.#pos.x, this.#pos.y, this.#index);
+    this.#spcvs.drawSprite(this.#spi, this.#pos.x, this.#pos.y, this.#index, this.rotation);
   }
 
   translate(aDx, aDy) {
