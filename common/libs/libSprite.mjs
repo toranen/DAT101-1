@@ -56,6 +56,7 @@ class TSprite {
     this.#index = 0;
     this.animateSpeed = 0;
     this.#speedIndex = 0;
+    this.boundingBox = new lib2D.TRectangle(this.#pos.x, this.#pos.y, this.#spi.width, this.#spi.height);
   }
 
   draw() {

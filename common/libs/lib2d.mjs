@@ -30,6 +30,38 @@ class TPosition extends TPoint{
 
 }// End of TPosition class
 
+class TRectangle extends TPosition{
+  constructor(aX, aY, aWidth, aHeight){
+    super(aX, aY);
+    this.width = aWidth;
+    this.height = aHeight;
+  }
+
+  get left(){
+    return this.x;
+  }
+
+  get right(){
+    this.x + this.width;
+  }
+
+  get top(){
+    return this.y;
+  }
+
+  get bottom(){
+    return this.y + this.height;
+  }
+
+  isInsideRect(aRect){
+    if(this.left >= aRect.right) return false;
+    if(this.right <= aRect.left) return false;
+    if(this.top >= aRect.bottom) return false;
+    if(this.bottom <= aRect.top) return false;
+    return true;
+  }
+}
+
 export default {
   /**
    * @class TPoint
