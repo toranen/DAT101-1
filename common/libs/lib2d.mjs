@@ -42,7 +42,7 @@ class TRectangle extends TPosition{
   }
 
   get right(){
-    this.x + this.width;
+    return this.x + this.width;
   }
 
   get top(){

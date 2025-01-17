@@ -110,7 +110,6 @@ function spawnObstacle(){
   //Spawn a new obstacle in 2-7 seconds
   const seconds = Math.ceil(Math.random() * 5) + 2;
   setTimeout(spawnObstacle, seconds * 1000);
-  console.log("Obstacle spawned in " + seconds + " seconds");
 }
 
 //--------------- Event Handlers -----------------------------------------//

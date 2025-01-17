@@ -33,8 +33,8 @@ class TObstacle {
     this.#upper.translate(-1, 0);
     this.#lower.translate(-1, 0);
     const hasCollided = 
-    GameProps.hero.hasCollided(this.#upper.boundingBox) || 
-    GameProps.hero.hasCollided(this.#lower.boundingBox);
+    GameProps.hero.hasCollided(this.#upper) || 
+    GameProps.hero.hasCollided(this.#lower);
 
     if(hasCollided){
       console.log("Game Over");
