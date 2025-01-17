@@ -86,6 +86,11 @@ function drawObstacles(){
 }
 
 function animateGame(){
+  if(GameProps.hero.isDead){
+    GameProps.hero.animateSpeed = 0;
+    GameProps.hero.update();
+    return;
+  }
   GameProps.ground.translate(-GameProps.speed, 0);
   if(GameProps.ground.posX <= -SpriteInfoList.background.width){
     GameProps.ground.posX = 0;

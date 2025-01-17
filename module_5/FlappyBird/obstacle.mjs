@@ -37,7 +37,7 @@ class TObstacle {
     GameProps.hero.hasCollided(this.#lower);
 
     if(hasCollided){
-      console.log("Game Over");
+      GameProps.hero.isDead = true;
     }
   }
 

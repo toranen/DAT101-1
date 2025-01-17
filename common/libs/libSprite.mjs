@@ -76,8 +76,8 @@ class TSprite {
   translate(aDx, aDy) {
     this.#pos.x += aDx;
     this.#pos.y += aDy;
-    this.boundingBox.x = aDx;
-    this.boundingBox.y = aDy;
+    this.boundingBox.x += aDx;
+    this.boundingBox.y += aDy;
   }
 
   get posX() {
