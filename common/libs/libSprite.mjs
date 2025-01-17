@@ -76,6 +76,8 @@ class TSprite {
   translate(aDx, aDy) {
     this.#pos.x += aDx;
     this.#pos.y += aDy;
+    this.boundingBox.x = aDx;
+    this.boundingBox.y = aDy;
   }
 
   get posX() {
@@ -88,15 +90,19 @@ class TSprite {
 
   set posX(aX) {
     this.#pos.x = aX;
+    this.boundingBox.x = aX;
   }
 
   set posY(aY) {
     this.#pos.y = aY;
+    this.boundingBox.y = aY;
   }
 
   setPos(aX, aY) {
     this.#pos.x = aX;
     this.#pos.y = aY;
+    this.boundingBox.x = aX;
+    this.boundingBox.y = aY;
   }
 
   get index() {
@@ -105,6 +111,10 @@ class TSprite {
   
   set index(aIndex){
     this.#index = aIndex;
+  }
+
+  hasCollided(aSprite){
+    return this.boundingBox.isInsideRect(aSprite.boundingBox);
   }
 
 } //End of TSprite class

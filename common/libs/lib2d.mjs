@@ -79,5 +79,22 @@ export default {
    * @method clone - A method to clone the position object.
    * @method distanceToPoint - A method to calculate the distance to another point.
    */
-  TPosition
+  TPosition,
+
+  /**
+   * @class TRectangle
+   * @extends TPosition
+   * @description A class representation for a rectangle in 2D.
+   * @param {number} aX - The x-coordinate.
+   * @param {number} aY - The y-coordinate.
+   * @param {number} aWidth - The width of the rectangle.
+   * @param {number} aHeight - The height of the rectangle.
+   * @property {number} width - The width of the rectangle.
+   * @property {number} height - The height of the rectangle.
+   * @property {number} left - The left side of the rectangle. 
+   * @property {number} right - The right side of the rectangle.
+   * @property {number} top - The top side of the rectangle.
+   * @property {number} bottom - The bottom side of the rectangle.
+   */
+  TRectangle
 }

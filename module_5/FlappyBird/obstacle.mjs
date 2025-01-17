@@ -32,6 +32,13 @@ class TObstacle {
   update(){
     this.#upper.translate(-1, 0);
     this.#lower.translate(-1, 0);
+    const hasCollided = 
+    GameProps.hero.hasCollided(this.#upper.boundingBox) || 
+    GameProps.hero.hasCollided(this.#lower.boundingBox);
+
+    if(hasCollided){
+      console.log("Game Over");
+    }
   }
 
   get posX(){
