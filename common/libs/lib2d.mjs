@@ -62,6 +62,29 @@ class TRectangle extends TPosition{
   }
 }
 
+const RAD = Math.PI / 180;
+
+
+class TSinWave {
+
+  #amplitude;
+  #frequency;
+  #angle;
+
+  constructor(aAmplitude, aFrequency){
+    this.#amplitude = aAmplitude;
+    this.#frequency = aFrequency;
+    this.#angle = 0;
+  }
+
+  get value(){
+    let value = this.#amplitude * Math.sin(this.#angle * RAD);
+    this.#angle += this.#frequency;
+    return value;
+  }
+
+}
+
 export default {
   /**
    * @class TPoint
@@ -96,5 +119,7 @@ export default {
    * @property {number} top - The top side of the rectangle.
    * @property {number} bottom - The bottom side of the rectangle.
    */
-  TRectangle
+  TRectangle,
+
+  TSinWave
 }
