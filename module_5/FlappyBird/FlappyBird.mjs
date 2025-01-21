@@ -91,8 +91,8 @@ function drawObstacles() {
   }
 }
 
-function drawBait(){
-  for (let i = 0; i < GameProps.baits.length; i++){
+function drawBait() {
+  for(let i = 0; i < GameProps.baits.length; i++){
     const bait = GameProps.baits[i];
     bait.draw();
   }
@@ -121,11 +121,6 @@ function animateGame() {
       }
       if (delObstacleIndex >= 0) {
         GameProps.obstacles.splice(delObstacleIndex, 1);
-      }
-      case EGameStatus.gameOver:
-      for (let i = 0; i < GameProps.baits.length; i++){
-        const bait = GameProps.baits[i];
-        bait.update();
       }
       break;
   }
